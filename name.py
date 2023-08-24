@@ -46,16 +46,24 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    st.title("Gender Prediction from Name")
-    name_input = st.text_input("Enter a name:")
-
-    if name_input:
-        gender = bayes.classify(extract_gender_features(name_input))
-        st.subheader(f"Name: {name_input}")
-        st.write(f"Predicted Gender: {gender.capitalize()}")
-
+    st.title("Gender Prediction from Names")
+    
+    # Multiline text input for names
+    names_input = st.text_area("Enter names (one per line):", "", height=150)
+    
+    # Prediction button
+    if st.button("Predict Gender"):
+        names_list = names_input.strip().split("\n")
+        
+        if names_list:
+            st.write("Predicted Genders:")
+            for name in names_list:
+                gender = bayes.classify(extract_gender_features(name))
+                st.write(f"Name: {name}, Predicted Gender: {gender.capitalize()}")
+        else:
+            st.warning("Please enter at least one name for prediction.")
+    
 if __name__ == "__main__":
     main()
-
 
 
