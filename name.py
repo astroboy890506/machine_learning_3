@@ -1,6 +1,6 @@
 import streamlit as st
 import nltk
-
+nltk.download('names')
 names = [(name, 'male') for name in nltk.corpus.names.words("male.txt")]
 names += [(name, 'female') for name in nltk.corpus.names.words("female.txt")]
 
