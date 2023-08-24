@@ -56,14 +56,16 @@ def main():
         names_list = names_input.strip().split("\n")
         
         if names_list:
-            st.write("Predicted Genders:")
+            results = []
             for name in names_list:
                 gender = bayes.classify(extract_gender_features(name))
-                st.write(f"Name: {name}, Predicted Gender: {gender.capitalize()}")
+                results.append((name, gender.capitalize()))
+
+            # Display results in a table
+            st.write("Predicted Genders:")
+            st.table(results)
         else:
             st.warning("Please enter at least one name for prediction.")
     
 if __name__ == "__main__":
     main()
-
-
