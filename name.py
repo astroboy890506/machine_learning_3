@@ -39,18 +39,23 @@ testData = data[trainCount:]
 bayes = nltk.NaiveBayesClassifier.train(trainData)
 
 def main():
+    st.set_page_config(
+        page_title="Gender Prediction App",
+        page_icon=":boy:",
+        layout="centered",
+        initial_sidebar_state="expanded"
+    )
+
     st.title("Gender Prediction from Name")
     name_input = st.text_input("Enter a name:")
-    
+
     if name_input:
         gender = bayes.classify(extract_gender_features(name_input))
-        st.write(f"The name '{name_input}' is classified as '{gender}'.")
+        st.subheader(f"Name: {name_input}")
+        st.write(f"Predicted Gender: {gender.capitalize()}")
 
 if __name__ == "__main__":
     main()
-
-
-
 
 
 
