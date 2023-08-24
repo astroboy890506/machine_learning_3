@@ -56,7 +56,7 @@ def main():
         names_list = names_input.strip().split("\n")
         
         if names_list:
-            results = []
+            results = [("Name", "Gender")]  # Initialize with column headers
             for name in names_list:
                 gender = bayes.classify(extract_gender_features(name))
                 results.append((name, gender.capitalize()))
